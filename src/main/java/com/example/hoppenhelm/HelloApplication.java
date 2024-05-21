@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 920, 720);
         scene.setFill(Color.LIGHTGREEN);
 //        layout
-        stage.setTitle("Hello! title");
+        stage.setTitle("Hoppenhelm game");
         stage.setScene(scene);
         stage.show();
     }

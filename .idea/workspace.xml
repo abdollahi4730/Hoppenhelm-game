@@ -7,7 +7,6 @@
     <list default="true" id="061a81a3-61b5-4200-b504-9abe0464e4b2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hoppenhelm/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hoppenhelm/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,7 @@
       <updated>1716294994339</updated>
       <workItem from="1716294995405" duration="862000" />
       <workItem from="1716312692156" duration="6200000" />
-      <workItem from="1716321222014" duration="3264000" />
+      <workItem from="1716321222014" duration="3730000" />
     </task>
     <servers />
   </component>
