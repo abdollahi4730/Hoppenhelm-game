@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="061a81a3-61b5-4200-b504-9abe0464e4b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/CircleShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/HoppenhelmApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/hoppenhelm/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/hoppenhelm/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/hoppenhelm/hello-view.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="061a81a3-61b5-4200-b504-9abe0464e4b2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +84,7 @@
       <workItem from="1716372585923" duration="8698000" />
       <workItem from="1716383415381" duration="1397000" />
       <workItem from="1716401028412" duration="1697000" />
-      <workItem from="1716407370521" duration="413000" />
+      <workItem from="1716407370521" duration="738000" />
     </task>
     <servers />
   </component>
