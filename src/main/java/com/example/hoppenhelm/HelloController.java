@@ -16,7 +16,8 @@ public class HelloController {
 
     @FXML
     protected void onTestButtonClick() {
-        testText.setText("Hello this is a test.");
+//        testText.setText("Hello this is a test.");
+    System.out.println("helloooo");
     }
 
 }
