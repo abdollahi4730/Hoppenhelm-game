@@ -29,10 +29,22 @@ public class Player {
     }
     public void moveCircle() throws InterruptedException {
         System.out.println("hello");
-        Thread.sleep(1000);
-        System.out.println("bye");
-//        for(double i = nowLocationY ; i > nowLocationY - 100 ; i = i - 1){
-//            this.circle.setCenterY(i);
+        double nowLocationY = circle.getCenterY();
+
+
+//        for(double i = nowLocationY ; i > nowLocationY - 200 ; i = i - 8) {
+//            circle.setCenterY(i);
+//            Thread.sleep(1);
+//        }
+//        Thread.sleep(500);
+//        currentY = circle.getCenterY();
+//        for(double i = currentY ; i < currentY + 200 ; i = i + 8) {
+//            circle.setCenterY(i);
+//            Thread.sleep(1 , 1);
+////            Thread.sleep();
+//        }
+//        System.out.println("bye");
+
 //        currentY = circle.getCenterY();
 //        targetY = currentY - 100;
 //        deltaY = targetY - currentY;
