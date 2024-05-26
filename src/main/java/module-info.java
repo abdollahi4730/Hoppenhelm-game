@@ -4,6 +4,6 @@ module com.example.hoppenhelm {
     requires java.desktop;
 
 
-    opens com.example.hoppenhelm to javafx.fxml;
-    exports com.example.hoppenhelm;
+    opens com.game.hoppenhelm to javafx.fxml;
+    exports com.game.hoppenhelm;
 }

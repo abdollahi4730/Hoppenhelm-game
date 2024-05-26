@@ -1,4 +1,4 @@
-package com.example.hoppenhelm;
+package com.game.hoppenhelm;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

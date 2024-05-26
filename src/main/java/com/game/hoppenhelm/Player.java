@@ -1,8 +1,8 @@
-package com.example.hoppenhelm;
+package com.game.hoppenhelm;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
-
+import javafx.scene.shape.Rectangle; // for use in earth of game
 import java.lang.Thread;
 
 public class Player {
@@ -30,7 +30,9 @@ public class Player {
     public void moveCircle() throws InterruptedException {
         System.out.println("hello");
         double nowLocationY = circle.getCenterY();
-
+        circle.setCenterY(nowLocationY -10 );
+//        circle.getTransl
+//        Thread.sleep(1000);
 
 //        for(double i = nowLocationY ; i > nowLocationY - 200 ; i = i - 8) {
 //            circle.setCenterY(i);
