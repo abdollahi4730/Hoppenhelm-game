@@ -1,5 +1,7 @@
 package com.game.hoppenhelm;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
@@ -33,14 +35,25 @@ public class Playground {
                 root.getChildren().add(rectangle);
 
             }
+//            System.out.println(root.getChildren());
 
         }
 //
 //        }
         System.out.println("i created");
     }
-//    public Rectangle[] movePlayground(){
-//        return this.rectangles;
-//    }
+    public void movePlayground(Group root){
+//        for ( i : root.getChildren()){
+//
+//        }
+        System.out.println(root.getChildren().get(0).getClass().getName() );
+
+        for (Node childIndex : root.getChildren() ){
+//            childIndex.toString().charAt()
+        }
+
+//        int[]t = new int[10];
+
+    }
 
 }

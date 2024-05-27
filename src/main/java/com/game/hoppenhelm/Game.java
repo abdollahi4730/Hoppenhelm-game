@@ -42,6 +42,7 @@ public class Game extends Application {
 //                System.out.println("you wone. such as ever");
                 try{
                     player.moveCircle();
+                    playground.movePlayground(root);
 //                    }
 
                 } catch (Exception InterruptedException){
