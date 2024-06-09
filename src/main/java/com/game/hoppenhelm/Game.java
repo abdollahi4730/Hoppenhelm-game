@@ -20,10 +20,10 @@ public class Game extends Application {
         this.widthScreen = 720;
         this.heightScreen = 1280;
         Player player = new Player(80 , 650 , 50);
-
-        Group root = new Group(player.getCircle());
+        Enemy enemy = new Enemy(100 , 110 , 1100 , 595 );
+        Group root = new Group(player.getCircle() , enemy.getRectangle());
         Scene scene = new Scene(root, this.heightScreen, this.widthScreen); // 920 ix X and 720 ix y
-        scene.setFill(Color.LIGHTGREEN);
+        scene.setFill(Color.DARKBLUE);
         stage.setTitle("Hoppenhelm game");
 
 
@@ -41,8 +41,9 @@ public class Game extends Application {
                 }
 //                System.out.println("you wone. such as ever");
                 try{
-                    player.moveCircle();
+//                    player.moveCircle();
                     playground.movePlayground(root);
+                    enemy.moverectangle();
 //                    }
 
                 } catch (Exception InterruptedException){
@@ -50,6 +51,16 @@ public class Game extends Application {
                 }
 //                System.out.println(circle.CenterY);
             }
+//            if (e.getCode() == KeyCode.V){
+//                if (enemy.nowLocationX ==210) {
+//
+//
+//                }
+//                }
+
+
+
+
         });
 
 

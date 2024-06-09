@@ -19,7 +19,7 @@ public class Player {
 //        System.out.println(this.CenterX + " " + this.CenterY + " " + this.Radius);
         this.circle = new Circle();
         this.circle.setCenterX(80);
-        this.circle.setFill(Color.BLUE);
+        this.circle.setFill(Color.LIGHTGREEN);
         this.circle.setCenterY(650);
         this.circle.setRadius(50);
 
@@ -30,7 +30,8 @@ public class Player {
     public void moveCircle() throws InterruptedException {
         System.out.println("hello");
         double nowLocationY = circle.getCenterY();
-        circle.setCenterY(nowLocationY -10 );
+
+        circle.setCenterY(nowLocationY -100 );
 //        circle.getTransl
 //        Thread.sleep(1000);
 
