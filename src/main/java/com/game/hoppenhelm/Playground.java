@@ -4,11 +4,14 @@ import javafx.scene.Node;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 //import
 public class Playground {
     private int widthScreen ;
     private double widthRec;
+    private int movingRectIndex;
 
 
     Playground(int widthScreen , int heightScreen , Group root) {
@@ -34,6 +37,14 @@ public class Playground {
                 rectangle.setX(heightScreen - (i * 50));
                 root.getChildren().add(rectangle);
 
+            }else {
+                Rectangle rectangle = new Rectangle();
+                rectangle.setFill(Color.BLUE);
+                rectangle.setWidth(50);
+                rectangle.setHeight(15);
+                rectangle.setY(widthScreen - 15);
+                rectangle.setX(heightScreen - (i * 50));
+                root.getChildren().add(rectangle);
             }
 //            System.out.println(root.getChildren());
 
@@ -41,16 +52,40 @@ public class Playground {
 //
 //        }
         System.out.println("i created");
+        root.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                changeBlocksColor(root);
+            }
+        });
+
+        root.requestFocus();
     }
-    public void movePlayground(Group root){
+    private void changeBlocksColor(Group root) {
+        for (Node node : root.getChildren()) {
+            if (node instanceof Rectangle) {
+                Rectangle rectangle = (Rectangle) node;
+                Color currentColor = (Color) rectangle.getFill();
+
+                if (currentColor == Color.BLACK) {
+                    rectangle.setFill(Color.BLUE);
+                } else if (currentColor == Color.BLUE) {
+                    rectangle.setFill(Color.BLACK);
+                }
+            }
+        }
+    }
+
+public void movePlayground(Group root){
 //        for ( i : root.getChildren()){
 //
 //        }
+
         System.out.println(root.getChildren().get(0).getClass().getName() );
 
-        for (Node childIndex : root.getChildren() ){
+     //   for (Node childIndex : root.getChildren() ){
 //            childIndex.toString().charAt()
-        }
+
+
 
 //        int[]t = new int[10];
 
