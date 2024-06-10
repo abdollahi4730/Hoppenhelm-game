@@ -7,11 +7,9 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;// for controll evnet with keyboard
 import java.io.IOException;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.animation.TranslateTransition;
-import javafx.util.Duration;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Game extends Application {
     protected int hp = 3;
@@ -19,9 +17,8 @@ public class Game extends Application {
     static Timer timer= new Timer();
     static TimerTask Task = new MyTimerTask();
     int contrl = 0;
-
     Random random = new Random();
-    int temp = random.nextInt(10)+7;
+    int temp = random.nextInt(10)+7;   // age inja tarif nemishod error midad majbur shodam inja tarif konam
 
 
 
@@ -39,8 +36,8 @@ public class Game extends Application {
         this.heightScreen = 1280;
         Player player = new Player(80 , 650 , 50);
         Enemy enemy = new Enemy(90 , 110 , 1100 , 595 );
-        Enemy enemy1 = enemy;
-            Group root = new Group(player.getCircle() , enemy1.getRectangle() );
+        AtomicReference<Enemy> enemy1 = new AtomicReference<>(enemy);
+            Group root = new Group(player.getCircle() , enemy1.get().getRectangle() );
         Scene scene = new Scene(root, this.heightScreen, this.widthScreen); // 920 ix X and 720 ix y
         scene.setFill(Color.DARKBLUE);
         stage.setTitle("Hoppenhelm game");
@@ -55,15 +52,14 @@ public class Game extends Application {
         scene.setOnKeyPressed(e -> {
 //            timer.schedule(Task ,30000 , 0);
             if(e.getCode() == KeyCode.SPACE){
-                contrl++;
+                contrl++; // tedad space mishmore ta ba temp barabar shod enemy besaze
                 if(root.getChildren().get(1).getClass().getName() == "javafx.scene.shape.Circle"){
                     System.out.println("yo");
                 }
-                System.out.println("jump" + contrl );
-                if ( contrl == temp){
-                    enemy1.set(90 , 110 , 1100 , 595);
+                if ( contrl == temp){// sakht enemy jadid
+                    enemy1.get().set(90 , 110 , 1100 , 595);
                     temp=random.nextInt(10)+7;
-                    root.getChildren().set(1 ,enemy1.getRectangle());
+                    root.getChildren().set(1 , enemy1.get().getRectangle());
                     contrl=0;
                 }
 
@@ -71,22 +67,23 @@ public class Game extends Application {
                 try{
 //                    player.moveCircle();
                     playground.movePlayground(root);
-                    enemy1.moverectangle();
+                    enemy1.get().moverectangle();
 
-                    if(enemy1.getCenterX() == 32 ){
+                    if(enemy1.get().getCenterX() == 32 ){// damage khordan
                         hp-=1;
                         System.out.println(" ye hp cam shod");
-                        if (hp == 0) {
+                        if (hp == 0) { // die
                             System.out.println(" oh oh you died ");
                             root.getChildren().remove(0);
+                            //inja bayad barname tamum beshe
                         }
 
                     }
 
-                    if(enemy1.getCenterX() == -324 ){
-
-                        root.getChildren().remove(1);
-                    }
+//                    if(enemy1.get().getCenterX() == -324 ){
+//
+//                        root.getChildren().remove(1);
+//                    }
 //                    }
 
                 } catch (Exception InterruptedException){
@@ -94,14 +91,15 @@ public class Game extends Application {
                 }
 //                System.out.println(circle.CenterY);
             }
-            if (e.getCode() == KeyCode.V){
-                if (enemy1.getCenterX() ==210) {
+            if (e.getCode() == KeyCode.V){ // zarbe zadan tu yek khone aqab tar
+
+                if (enemy1.get().getCenterX() ==210) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
                     System.out.println(" baba benazam koshtish");
                     root.getChildren().remove(1);
+                    enemy1.get().set(0 , 0 , 0 , 0);
 
-                    enemy1.set(0 , 0 , 0 , 0);
                 }
-                enemy1=enemy;
+                enemy1.set(enemy);
             }
 
 
