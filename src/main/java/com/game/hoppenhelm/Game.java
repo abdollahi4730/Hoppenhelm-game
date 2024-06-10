@@ -80,6 +80,7 @@ public class Game extends Application {
                             System.out.println(" oh oh you died ");
                             root.getChildren().remove(0);
                         }
+
                     }
 
                     if(enemy1.getCenterX() == -324 ){
@@ -93,19 +94,20 @@ public class Game extends Application {
                 }
 //                System.out.println(circle.CenterY);
             }
-//            if (e.getCode() == KeyCode.V){
-//                if (enemy.nowLocationX ==210) {
-//
-//
-//                }
-//                }
+            if (e.getCode() == KeyCode.V){
+                if (enemy1.getCenterX() ==210) {
+                    System.out.println(" baba benazam koshtish");
+                    root.getChildren().remove(1);
+
+                    enemy1.set(0 , 0 , 0 , 0);
+                }
+                enemy1=enemy;
+            }
 
 
 
 
         });
-
-
 
         stage.show();
     }
