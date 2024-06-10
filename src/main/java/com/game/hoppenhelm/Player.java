@@ -1,11 +1,18 @@
 package com.game.hoppenhelm;
+import javafx.animation.TranslateTransition;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
 import javafx.scene.shape.Rectangle; // for use in earth of game
+import javafx.util.Duration;
+
 import java.lang.Thread;
 
-public class Player {
+public class Player extends Parent {
+
+
     // constructor
     private int CenterX , CenterY , Radius ;
     private AnimationTimer timer;
@@ -27,11 +34,22 @@ public class Player {
     public Circle getCircle() {
         return circle;
     }
+
+    public int getCenterX() {
+        return CenterX;
+    }
+
+    public int getCenterY() {
+        return CenterY;
+    }
+
     public void moveCircle() throws InterruptedException {
         System.out.println("hello");
         double nowLocationY = circle.getCenterY();
 
         circle.setCenterY(nowLocationY -100 );
+
+
 //        circle.getTransl
 //        Thread.sleep(1000);
 
@@ -61,5 +79,9 @@ public class Player {
 ////                timer.stop();
 //            }
 //        };
+
+
+
     }
+
 }
