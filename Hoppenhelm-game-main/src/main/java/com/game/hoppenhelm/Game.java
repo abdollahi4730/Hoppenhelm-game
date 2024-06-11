@@ -18,7 +18,7 @@ import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
-import javafx.scene.text.Text;
+
 
 
 
