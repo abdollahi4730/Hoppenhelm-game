@@ -1,6 +1,7 @@
 module com.example.hoppenhelm {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.naming;
 //    requires java.desktop;
 
 

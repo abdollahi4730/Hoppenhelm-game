@@ -6,12 +6,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Circle;
 
 public class Enemy {
-    private double widthRec;
-    private int widthScreen , CenterX , CenterY , Radius ;
+    private double heightScreen , widthScreen , CenterX , CenterY ;
 
     Rectangle rectangle ;
     public Enemy(int widthScreen, int heightScreen, int CenterX , int CenterY) {
-        this.widthRec = heightScreen;
+        this.heightScreen = heightScreen;
         this.widthScreen = widthScreen;
 
         this.rectangle = new Rectangle();
@@ -20,6 +19,8 @@ public class Enemy {
         this.rectangle.setFill(Color.RED);
         this.rectangle.setY(CenterY);
         this.rectangle.setX(CenterX);
+        this.CenterX = CenterX;
+        this.CenterY = CenterY;
 
     }
 
@@ -32,8 +33,33 @@ public class Enemy {
     public void moverectangle() throws InterruptedException {
         System.out.println("hello");
 
-        nowLocationX -=178;
-        rectangle.setX(nowLocationX);
-        System.out.println(nowLocationX);
+        CenterX -=178;
+        rectangle.setX(CenterX);
+        System.out.println(CenterX);
+    }
+
+    public double getCenterX() {
+        return CenterX;
+    }
+
+    public double getNowLocationX() {
+        return nowLocationX;
+    }
+
+
+
+    public void  set(int widthScreen, int heightScreen, int CenterX , int CenterY) {
+        this.heightScreen = heightScreen;
+        this.widthScreen = widthScreen;
+
+        this.rectangle = new Rectangle();
+        this.rectangle.setHeight(heightScreen);
+        this.rectangle.setWidth(widthScreen);
+        this.rectangle.setFill(Color.RED);
+        this.rectangle.setY(CenterY);
+        this.rectangle.setX(CenterX);
+        this.CenterX = CenterX;
+        this.CenterY = CenterY;
+
     }
 }
