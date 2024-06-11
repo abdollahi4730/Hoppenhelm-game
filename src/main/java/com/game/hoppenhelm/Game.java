@@ -10,6 +10,10 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicReference;
+import javafx.scene.control.Alert;// for massage
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.util.Duration;
 
 public class Game extends Application {
     protected int hp = 3;
@@ -76,6 +80,19 @@ public class Game extends Application {
                             System.out.println(" oh oh you died ");
                             root.getChildren().remove(0);
                             //inja bayad barname tamum beshe
+
+                            Alert alert = new Alert(  AlertType.INFORMATION);
+
+                            alert.setHeaderText(null);
+                            alert.setContentText("Your life is over. you are killed :(");
+                            alert.getButtonTypes().setAll(ButtonType.OK);
+                            alert.showAndWait().ifPresent(response -> {
+                                if(response == ButtonType.OK){
+                                    stage.close();
+                                }
+                            });
+
+
                         }
 
                     }
