@@ -1,11 +1,7 @@
 package com.game.hoppenhelm;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;// for controll evnet with keyboard
@@ -18,9 +14,6 @@ import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
-
-
-
 
 public class Game extends Application {
     protected int hp = 3;
@@ -82,7 +75,6 @@ public class Game extends Application {
 
                     if(enemy1.get().getCenterX() == 32 ){// damage khordan
                         hp-=1;
-
                         System.out.println(" ye hp cam shod");
                         if (hp == 0) { // die
                             System.out.println(" oh oh you died ");
@@ -99,8 +91,6 @@ public class Game extends Application {
                                     stage.close();
                                 }
                             });
-
-
 
 
                         }
