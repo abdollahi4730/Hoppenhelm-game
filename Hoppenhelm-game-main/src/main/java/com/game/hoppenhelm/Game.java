@@ -88,6 +88,7 @@ public class Game extends Application {
                             System.out.println(" oh oh you died ");
                             root.getChildren().remove(0);
                             //inja bayad barname tamum beshe
+
                             Alert alert = new Alert(  AlertType.INFORMATION);
 
                             alert.setHeaderText(null);

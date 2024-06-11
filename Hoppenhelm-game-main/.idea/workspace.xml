@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3751965-6f15-45e0-8246-3ffabaa32d1d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/java/com/game/hoppenhelm/Enemy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/java/com/game/hoppenhelm/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/java/com/game/hoppenhelm/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/java/com/game/hoppenhelm/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/java/com/game/hoppenhelm/Playground.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Hoppenhelm-game-main (1)/Hoppenhelm-game-main/src/main/resources/com/game/hoppenhelm/hello-view.fxml" beforeDir="false" />
-    </list>
+    <list default="true" id="b3751965-6f15-45e0-8246-3ffabaa32d1d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +108,7 @@
       <workItem from="1718087626850" duration="245000" />
       <workItem from="1718088028007" duration="9870000" />
       <workItem from="1718098262842" duration="962000" />
-      <workItem from="1718107284963" duration="798000" />
+      <workItem from="1718107284963" duration="1118000" />
     </task>
     <servers />
   </component>

@@ -46,7 +46,6 @@ public class Playground {
                 rectangle.setX(heightScreen - (i * 50));
                 root.getChildren().add(rectangle);
             }
-//            System.out.println(root.getChildren());
 
         }
 //
