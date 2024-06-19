@@ -1,5 +1,6 @@
 package com.game.hoppenhelm;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -9,11 +10,9 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicReference;
 import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.util.Duration;
 
 public class Game extends Application {
     protected int hp = 3;
@@ -23,8 +22,7 @@ public class Game extends Application {
     int contrl = 0;
     Random random = new Random();
     int temp = random.nextInt(10)+7;   // age inja tarif nemishod error midad majbur shodam inja tarif konam
-
-
+    Enemy enemy;
 
     public static void main(String[] args) {
         launch();
@@ -39,9 +37,8 @@ public class Game extends Application {
         this.widthScreen = 720;
         this.heightScreen = 1280;
         Player player = new Player(80 , 650 , 50);
-        Enemy enemy = new Enemy(90 , 110 , 1100 , 595 );
-        AtomicReference<Enemy> enemy1 = new AtomicReference<>(enemy);
-            Group root = new Group(player.getCircle() , enemy1.get().getRectangle() );
+        enemy = new Enemy(90 , 110 , 1100 , 595 );
+            Group root = new Group(player.getCircle() , enemy.getRectangle() );
         Scene scene = new Scene(root, this.heightScreen, this.widthScreen); // 920 ix X and 720 ix y
         scene.setFill(Color.DARKBLUE);
         stage.setTitle("Hoppenhelm game");
@@ -61,9 +58,9 @@ public class Game extends Application {
                     System.out.println("yo");
                 }
                 if ( contrl == temp){// sakht enemy jadid
-                    enemy1.get().set(90 , 110 , 1100 , 595);
+                    enemy.set(90 , 110 , 1100 , 595);
                     temp=random.nextInt(10)+7;
-                    root.getChildren().set(1 , enemy1.get().getRectangle());
+                    root.getChildren().set(1 , enemy.getRectangle());
                     contrl=0;
                 }
 
@@ -71,9 +68,9 @@ public class Game extends Application {
                 try{
 //                    player.moveCircle();
                     playground.movePlayground(root);
-                    enemy1.get().moverectangle();
+                    enemy.moverectangle();
 
-                    if(enemy1.get().getCenterX() == 32 ){// damage khordan
+                    if(enemy.getCenterX() == 32 ){// damage khordan
                         hp-=1;
                         System.out.println(" ye hp cam shod");
                         if (hp == 0) { // die
@@ -91,12 +88,8 @@ public class Game extends Application {
                                     stage.close();
                                 }
                             });
-
-
                         }
-
                     }
-
 //                    if(enemy1.get().getCenterX() == -324 ){
 //
 //                        root.getChildren().remove(1);
@@ -106,26 +99,42 @@ public class Game extends Application {
                 } catch (Exception InterruptedException){
                     System.out.println((InterruptedException.getMessage()));
                 }
-//                System.out.println(circle.CenterY);
+
+                Task = new MyTimerTask();
+                timer.schedule(Task, 10000);
+
             }
             if (e.getCode() == KeyCode.V){ // zarbe zadan tu yek khone aqab tar
 
-                if (enemy1.get().getCenterX() ==210) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
+                if (enemy.getCenterX() ==210) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
                     System.out.println(" baba benazam koshtish");
                     root.getChildren().remove(1);
-                    enemy1.get().set(0 , 0 , 0 , 0);
-
+                    enemy.set(0 , 0 , 0 , 0);
                 }
-                enemy1.set(enemy);
             }
-
-
-
-
         });
+
+        Task = new MyTimerTask();
+        timer.schedule(Task, 10000);
 
         stage.show();
     }
-
+    static class MyTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Game over! Your time is up.");
+                alert.getButtonTypes().setAll(ButtonType.OK);
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        System.exit(0); // یا هر کدام از کد‌های خاتمه بازی
+                    }
+                });
+            });
+            timer.cancel();
+        }
+    }
 
 }
