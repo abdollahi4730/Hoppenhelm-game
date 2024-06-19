@@ -49,6 +49,8 @@ public class Game extends Application {
 
 //        root.getChildren().add(rectangle);
 
+        Task = new MyTimerTask();
+        timer.schedule(Task, 10000);
 
         scene.setOnKeyPressed(e -> {
 //            timer.schedule(Task ,30000 , 0);
@@ -99,7 +101,9 @@ public class Game extends Application {
                 } catch (Exception InterruptedException){
                     System.out.println((InterruptedException.getMessage()));
                 }
-
+                if (Task != null) {
+                    Task.cancel();
+                }
                 Task = new MyTimerTask();
                 timer.schedule(Task, 10000);
 
@@ -114,8 +118,6 @@ public class Game extends Application {
             }
         });
 
-        Task = new MyTimerTask();
-        timer.schedule(Task, 10000);
 
         stage.show();
     }
