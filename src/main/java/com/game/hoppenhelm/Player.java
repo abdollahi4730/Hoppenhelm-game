@@ -3,6 +3,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.shape.Circle;
+
 import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
 import javafx.scene.shape.Rectangle; // for use in earth of game
@@ -18,6 +19,11 @@ public class Player extends Parent {
     private AnimationTimer timer;
     private double targetY , currentY , deltaY;
     Circle circle;
+
+    private int numbersOfHearts = 3;
+    private int sizeHeart = 20;
+    Circle[] hearts = new Circle[numbersOfHearts];
+
     public Player(int CenterX , int CenterY , int Radius) {
         this.CenterX = CenterX ;
         this.CenterY = CenterY ;
@@ -29,23 +35,35 @@ public class Player extends Parent {
 //        this.circle.setFill(Color.LIGHTGREEN);
         this.circle.setCenterY(652);
         this.circle.setRadius(50);
+        this.circle.setOpacity(1);
         this.circle.setStyle("-fx-fill: #e529f2 ; -fx-stroke: white; -fx-stroke-width: 3;"); // use stroke for border color
 
-    }
-    public Circle getCircle() {
-        return circle;
-    }
 
+        // create heart of Circle
+        for (int i = 0 ; i < numbersOfHearts ; i++){
+            Circle heart = new Circle( (i + 0.5)*2* this.sizeHeart , this.sizeHeart ,this.sizeHeart);// x , y , size
+            heart.setFill(Color.RED);
+            heart.setStyle("-fx-fill: red;-fx-arc-height: 100; -fx-arc-width:100 ; -fx-stroke: white;-fx-stroke-width: 2; ");
+            hearts[i] = heart;
+        }
+
+//
+    }
+    public Circle getCircle() { return circle; }
     public int getCenterX() {
         return CenterX;
     }
-
     public int getCenterY() {
         return CenterY;
     }
+    public int getNumbersOfHearts() { return numbersOfHearts;}
+    public Circle[] getHearts() { return hearts; }
 
+    public void minusOpacity(double targetOpacity){
+        circle.setOpacity(targetOpacity);
+    }
     public void moveCircle() throws InterruptedException {
-        System.out.println("hello");
+//        System.out.println("circle move");
         double nowLocationY = circle.getCenterY();
 
         circle.setCenterY(nowLocationY -100 );
