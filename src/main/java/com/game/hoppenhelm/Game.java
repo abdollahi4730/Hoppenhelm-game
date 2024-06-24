@@ -16,9 +16,13 @@ import java.util.TimerTask;
 import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;// for score
 
 import javafx.scene.shape.Circle;
 public class Game extends Application {
+
+    private int playScore = 0;
+    private  Label score = new Label();
     static private Stage stage;
     static private Scene scene;
     protected int numHearts;
@@ -40,6 +44,14 @@ public class Game extends Application {
     }
     @Override
     public void start(Stage stage) throws IOException {
+
+         score.setLayoutX(10);
+         score.setLayoutY(50);
+         score.setText("Score: 0" );
+
+      //  score.setStyle("color: white; font-size: 20px ; font-weight: bold;");
+        score.setStyle("-fx-text-fill: white; -fx-font-size: 30px;");
+
 
         this.widthScreen = 720;
         this.heightScreen = 1280;
@@ -73,6 +85,7 @@ public class Game extends Application {
 //            timer.schedule(Task ,30000 , 0);
             if(e.getCode() == KeyCode.SPACE){
                 contrl++; // tedad space mishmore ta ba temp barabar shod enemy besaze
+                playScore++;// Increase the score
 //                if(root.getChildren().get(1).getClass().getName() == "javafx.scene.shape.Circle"){
 //                    System.out.println("yo");
 //                }
@@ -157,12 +170,17 @@ public class Game extends Application {
                 Task = new MyTimerTask();
                 timer.schedule(Task, 10000);
 
+                score.setText("Score: " +playScore);//show score
+                root.getChildren().add(score);
+
             }
             if (e.getCode() == KeyCode.V) { // zarbe zadan tu yek khone aqab tar
 //                System.out.println(enemy.getCenterX());
                 ObservableList<Node> rootChildren = root.getChildren();
 
                     if (enemy.getCenterX() == 194) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
+
+
                         for (int i = 0; i < rootChildren.size(); i++) {
                             Node node = rootChildren.get(i);
                             if (node instanceof Rectangle) {
@@ -173,9 +191,14 @@ public class Game extends Application {
                                     System.out.println("enemy killed !");
                                     enemy.set(0 , 0 , 0 , 0);
 
+
                                 }
                             }
                         }
+                        playScore +=3;
+
+                        score.setText("Score: " +playScore +"\u2066(\u2060•\u2060‿\u2060•\u2060)\u2069");//show score
+                        root.getChildren().add(score);
 
                     }
             }
@@ -190,7 +213,7 @@ public class Game extends Application {
         Alert alert = new Alert(  AlertType.INFORMATION);
 
         alert.setHeaderText(null);
-        alert.setContentText("Game Over :(");
+        alert.setContentText("Game Over \u2066(\u2060・\u2060_\u2060・)\u2069");
         alert.getButtonTypes().setAll(ButtonType.OK);
         alert.showAndWait().ifPresent(response -> {
             if(response == ButtonType.OK){
