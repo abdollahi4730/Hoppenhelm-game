@@ -30,7 +30,8 @@ public class Playground {
             if ( i % 2 == 0){
 
                 Rectangle rectangle = new Rectangle();
-                rectangle.setFill(Color.BLACK);
+//                rectangle.setFill(Color.BLACK);
+                rectangle.setStyle("-fx-fill: black; -fx-stroke: green; -fx-stroke-width: 2;");
                 rectangle.setWidth(50);
                 rectangle.setHeight(15);
                 rectangle.setY(widthScreen - 15);
@@ -39,7 +40,8 @@ public class Playground {
 
             }else {
                 Rectangle rectangle = new Rectangle();
-                rectangle.setFill(Color.BLUE);
+//                rectangle.setFill(Color.WHITE);
+                rectangle.setStyle("-fx-fill: white; -fx-stroke: #3ed03e; -fx-stroke-width: 2;"); // use stroke for border color and use fill for shape color
                 rectangle.setWidth(50);
                 rectangle.setHeight(15);
                 rectangle.setY(widthScreen - 15);
@@ -67,8 +69,8 @@ public class Playground {
                 Color currentColor = (Color) rectangle.getFill();
 
                 if (currentColor == Color.BLACK) {
-                    rectangle.setFill(Color.BLUE);
-                } else if (currentColor == Color.BLUE) {
+                    rectangle.setFill(Color.WHITE);
+                } else if (currentColor == Color.WHITE) {
                     rectangle.setFill(Color.BLACK);
                 }
             }
