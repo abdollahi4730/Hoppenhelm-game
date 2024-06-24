@@ -53,7 +53,7 @@ public class Playground {
         }
 //
 //        }
-        System.out.println("i created");
+//        System.out.println("i created");
         root.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
                 changeBlocksColor(root);
@@ -82,7 +82,7 @@ public void movePlayground(Group root){
 //
 //        }
 
-        System.out.println(root.getChildren().get(0).getClass().getName() );
+//        System.out.println(root.getChildren().get(0).getClass().getName() );
 
      //   for (Node childIndex : root.getChildren() ){
 //            childIndex.toString().charAt()
