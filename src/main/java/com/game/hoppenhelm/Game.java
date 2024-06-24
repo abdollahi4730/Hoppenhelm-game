@@ -1,9 +1,12 @@
 package com.game.hoppenhelm;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;// for controll evnet with keyboard
 import java.io.IOException;
@@ -13,26 +16,22 @@ import java.util.TimerTask;
 import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;// for score
-import javafx.scene.layout.StackPane;
 
-
+import javafx.scene.shape.Circle;
 public class Game extends Application {
-
-
-    private  int playerScare = 0;
-    private Label score =  new Label("score :0");
-
-
-    protected int hp = 3;
+    static private Stage stage;
+    static private Scene scene;
+    protected int numHearts;
     private int widthScreen, heightScreen;
+    private int widthScreenEnemy , heightScreenEnemy , centerXEnemy , centerYEnemey;
     static Timer timer= new Timer();
     static TimerTask Task = new MyTimerTask();
     int contrl = 0;
     Random random = new Random();
     int temp = random.nextInt(10)+7;   // age inja tarif nemishod error midad majbur shodam inja tarif konam
-    Enemy enemy;
 
+    Enemy enemy;
+    Player player;
     public static void main(String[] args) {
         launch();
 
@@ -44,18 +43,28 @@ public class Game extends Application {
 
         this.widthScreen = 720;
         this.heightScreen = 1280;
-        Player player = new Player(80 , 650 , 50);
-        enemy = new Enemy(70 , 70 , 1230 , 635 );
-        Group root = new Group(player.getCircle() , enemy.getRectangle() );
-        Scene scene = new Scene(root, this.heightScreen, this.widthScreen); // 920 ix X and 720 ix y
+        player = new Player(80 , 650 , 50);
+        numHearts = player.getNumbersOfHearts();
+        // size enemy
+        widthScreenEnemy = 70;
+        heightScreenEnemy = 70 ;
+        centerXEnemy = 1230 ;
+        centerYEnemey = 635;
+        this.enemy = new Enemy(widthScreenEnemy , heightScreenEnemy , centerXEnemy , centerYEnemey );
+        Group root = new Group(player.getCircle()  ,this.enemy.getRectangle() );
+        for (Node i : player.getHearts()){
+            root.getChildren().add(i);
+        }
+        System.out.println(player.getHearts());
+        this.scene = new Scene(root, this.heightScreen, this.widthScreen); // 920 ix X and 720 ix y
+        this.stage = stage;
         scene.setFill(Color.BLACK);
         stage.setTitle("Hoppenhelm game");
 
         stage.setScene(scene); // set scene on stage
         Playground playground = new Playground(this.widthScreen, this.heightScreen , root);
-//        Rectangle []rectangles = playground.movePlayground();
 
-//        root.getChildren().add(rectangle);
+
 
         Task = new MyTimerTask();
         timer.schedule(Task, 10000);
@@ -64,18 +73,15 @@ public class Game extends Application {
 //            timer.schedule(Task ,30000 , 0);
             if(e.getCode() == KeyCode.SPACE){
                 contrl++; // tedad space mishmore ta ba temp barabar shod enemy besaze
-                playerScare++;//increase score
-
-
-
-                if(root.getChildren().get(1).getClass().getName() == "javafx.scene.shape.Circle"){
-                    System.out.println("yo");
-                }
+//                if(root.getChildren().get(1).getClass().getName() == "javafx.scene.shape.Circle"){
+//                    System.out.println("yo");
+//                }
                 if ( contrl == temp){// sakht enemy jadid
 //                    enemy.set(70 , 70 , 1100 , 595);
-                    enemy.set(70 , 70 , 1230 , 635 );
-                    temp=random.nextInt(10)+7;
-                    root.getChildren().set(1 , enemy.getRectangle());
+                    enemy.set(widthScreenEnemy , heightScreenEnemy , centerXEnemy , centerYEnemey );
+                    temp=random.nextInt(10)+8;
+//                    root.getChildren().set(1 , enemy.getRectangle()); // is a bug
+                    root.getChildren().add(enemy.getRectangle());
                     contrl=0;
 
 
@@ -86,25 +92,54 @@ public class Game extends Application {
 //                    player.moveCircle();
                     playground.movePlayground(root);
                     enemy.moverectangle();
-
+//                    System.out.println("enemy.getCenterX(): "+enemy.getCenterX());
                     if(enemy.getCenterX() == 46 ){// damage khordan
-                        hp-=1;
-                        System.out.println(" ye hp cam shod");
-                        if (hp == 0) { // die
-                            System.out.println(" oh oh you died ");
-                            root.getChildren().remove(0);
-                            //inja bayad barname tamum beshe
+                        // whene rectangle touch circle , rectangle is deleted and heart of player -1
 
-                            Alert alert = new Alert(  AlertType.INFORMATION);
+                        numHearts -=1;
+                        double biggerXHeart = 0;
+                        int biggerHeartIndex = 0;
+                        ObservableList<Node> rootChildren = root.getChildren();
 
-                            alert.setHeaderText(null);
-                            alert.setContentText("Your life is over. you are killed :(");
-                            alert.getButtonTypes().setAll(ButtonType.OK);
-                            alert.showAndWait().ifPresent(response -> {
-                                if(response == ButtonType.OK){
-                                    stage.close();
+                        for (int i = 0; i < rootChildren.size(); i++) {
+                            Node node = rootChildren.get(i);
+                            if (node instanceof Circle) {
+                                Circle circle = (Circle) node;
+                                if (circle.getCenterY() == 20 && circle.getRadius() == 20) { // find big x of heart and save it in biggerHeartIndex
+                                    double nowCircleX = circle.getCenterX();
+                                    biggerXHeart = biggerXHeart >= nowCircleX ? biggerXHeart : nowCircleX;
+                                    biggerHeartIndex = i;
                                 }
-                            });
+                            } else if (node instanceof Rectangle) { // delete enemy that has touch player
+                                Rectangle rec = (Rectangle) node;
+                                if (rec.getY() == centerYEnemey && rec.getHeight() == heightScreenEnemy && rec.getWidth() == widthScreenEnemy){
+//                                    System.out.println(rootChildren.get(i));
+                                    root.getChildren().remove(i);
+//                                    System.out.println("enemy killed !");
+                                    enemy.set(0 , 0 , 0 , 0);
+
+                                }
+                            }
+
+                        }
+                        if (biggerXHeart != 0 || biggerHeartIndex != 0) {
+//                            System.out.println("biggerXHeart: " + biggerXHeart + "biggerHeartIndex: " + biggerHeartIndex);
+                            root.getChildren().remove(biggerHeartIndex);
+                            System.out.println("You lost a blood");
+
+                            double targetMinusOpacity = 1.0 / (this.numHearts +1);
+                            double targetOpacity =  player.getOpacity() - targetMinusOpacity;
+                            player.minusOpacity(targetOpacity);
+//                            System.out.println("player.getOpacity(): "+ player.getOpacity() + "tar: "+targetOpacity);
+                        }
+
+                        if (numHearts == 0) { // die
+                            System.out.println("you died");
+//                            root.getChildren().remove(0);
+                            //inja bayad barname tamum beshe
+                            scene.setFill(Color.RED);
+                            gameOver();
+
                         }
                     }
 //                    if(enemy1.get().getCenterX() == -324 ){
@@ -122,49 +157,63 @@ public class Game extends Application {
                 Task = new MyTimerTask();
                 timer.schedule(Task, 10000);
 
-                score.setText("Score: "+playerScare);//Show score
-                root.getChildren().add(score);
-
             }
-            if (e.getCode() == KeyCode.V){ // zarbe zadan tu yek khone aqab tar
-                System.out.println(enemy.getCenterX());
-                if (enemy.getCenterX() ==194) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
-                    playerScare += 3;
-                    System.out.println(" baba benazam koshtish");
-                    root.getChildren().remove(1);
-                    enemy.set(0 , 0 , 0 , 0);
+            if (e.getCode() == KeyCode.V) { // zarbe zadan tu yek khone aqab tar
+//                System.out.println(enemy.getCenterX());
+                ObservableList<Node> rootChildren = root.getChildren();
 
-                    score.setText("Score: "+playerScare + "\u2066(\u2060•\u2060‿\u2060•\u2060)\u2069");//Show score
-                    root.getChildren().add(score);
+                    if (enemy.getCenterX() == 194) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
+                        for (int i = 0; i < rootChildren.size(); i++) {
+                            Node node = rootChildren.get(i);
+                            if (node instanceof Rectangle) {
+                                Rectangle rec = (Rectangle) node;
+                                if (rec.getY() == centerYEnemey && rec.getHeight() == heightScreenEnemy && rec.getWidth() == widthScreenEnemy){
+                                    System.out.println(rootChildren.get(i));
+                                    root.getChildren().remove(i);
+                                    System.out.println("enemy killed !");
+                                    enemy.set(0 , 0 , 0 , 0);
 
-                }
+                                }
+                            }
+                        }
+
+                    }
             }
         });
 
-        ///
 
         stage.show();
     }
+    static void gameOver(){
+//        this.scene.
+        scene.setFill(Color.RED);
+        Alert alert = new Alert(  AlertType.INFORMATION);
+
+        alert.setHeaderText(null);
+        alert.setContentText("Game Over :(");
+        alert.getButtonTypes().setAll(ButtonType.OK);
+        alert.showAndWait().ifPresent(response -> {
+            if(response == ButtonType.OK){
+                stage.close();
+            }
+        });
+
+//        System.out.println("yoooooooooo test");
+    }
     static class MyTimerTask extends TimerTask {
         @Override
+
         public void run() {
-            Platform.runLater(() -> {
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Game over! Your time is up.");
-                alert.getButtonTypes().setAll(ButtonType.OK);
-                alert.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        System.exit(0); // یا هر کدام از کد‌های خاتمه بازی
-                    }
+            try {
+                Platform.runLater(() -> {
+                    gameOver();
                 });
-            });
-            timer.cancel();
+                timer.cancel();
+            }catch (Exception e){
+                System.out.println(e);
+                e.printStackTrace();
+            }
         }
-    }/*
-    public void updateScore(int playerScare) {
-        score.setText("Score: " + playerScare);
     }
-    */
 
 }
