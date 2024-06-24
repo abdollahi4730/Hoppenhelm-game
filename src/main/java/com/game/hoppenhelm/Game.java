@@ -37,10 +37,10 @@ public class Game extends Application {
         this.widthScreen = 720;
         this.heightScreen = 1280;
         Player player = new Player(80 , 650 , 50);
-        enemy = new Enemy(90 , 110 , 1100 , 595 );
-            Group root = new Group(player.getCircle() , enemy.getRectangle() );
+        enemy = new Enemy(70 , 70 , 1230 , 635 );
+        Group root = new Group(player.getCircle() , enemy.getRectangle() );
         Scene scene = new Scene(root, this.heightScreen, this.widthScreen); // 920 ix X and 720 ix y
-        scene.setFill(Color.DARKBLUE);
+        scene.setFill(Color.BLACK);
         stage.setTitle("Hoppenhelm game");
 
         stage.setScene(scene); // set scene on stage
@@ -60,10 +60,13 @@ public class Game extends Application {
                     System.out.println("yo");
                 }
                 if ( contrl == temp){// sakht enemy jadid
-                    enemy.set(90 , 110 , 1100 , 595);
+//                    enemy.set(70 , 70 , 1100 , 595);
+                    enemy.set(70 , 70 , 1230 , 635 );
                     temp=random.nextInt(10)+7;
                     root.getChildren().set(1 , enemy.getRectangle());
                     contrl=0;
+
+
                 }
 
 //                System.out.println("you wone. such as ever");
@@ -72,7 +75,7 @@ public class Game extends Application {
                     playground.movePlayground(root);
                     enemy.moverectangle();
 
-                    if(enemy.getCenterX() == 32 ){// damage khordan
+                    if(enemy.getCenterX() == 46 ){// damage khordan
                         hp-=1;
                         System.out.println(" ye hp cam shod");
                         if (hp == 0) { // die
@@ -109,8 +112,8 @@ public class Game extends Application {
 
             }
             if (e.getCode() == KeyCode.V){ // zarbe zadan tu yek khone aqab tar
-
-                if (enemy.getCenterX() ==210) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
+                System.out.println(enemy.getCenterX());
+                if (enemy.getCenterX() ==194) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
                     System.out.println(" baba benazam koshtish");
                     root.getChildren().remove(1);
                     enemy.set(0 , 0 , 0 , 0);
