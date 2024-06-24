@@ -123,16 +123,19 @@ public class Game extends Application {
                 timer.schedule(Task, 10000);
 
                 score.setText("Score: "+playerScare);//Show score
-                StackPane root2 = new StackPane();
                 root.getChildren().add(score);
 
             }
             if (e.getCode() == KeyCode.V){ // zarbe zadan tu yek khone aqab tar
                 System.out.println(enemy.getCenterX());
                 if (enemy.getCenterX() ==194) {// inja bayad age 3 second gozasht va V nazad ye jun kam beshe va daqiqan rectangle bere be 0v0 ke az junesh 2ta kam nashe
+                    playerScare += 3;
                     System.out.println(" baba benazam koshtish");
                     root.getChildren().remove(1);
                     enemy.set(0 , 0 , 0 , 0);
+
+                    score.setText("Score: "+playerScare + "\u2066(\u2060•\u2060‿\u2060•\u2060)\u2069");//Show score
+                    root.getChildren().add(score);
 
                 }
             }
@@ -158,7 +161,10 @@ public class Game extends Application {
             });
             timer.cancel();
         }
+    }/*
+    public void updateScore(int playerScare) {
+        score.setText("Score: " + playerScare);
     }
-
+    */
 
 }
