@@ -33,7 +33,6 @@ public class Game extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         this.widthScreen = 720;
         this.heightScreen = 1280;
         Player player = new Player(80 , 650 , 50);
