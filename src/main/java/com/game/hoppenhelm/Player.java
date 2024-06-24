@@ -26,9 +26,10 @@ public class Player extends Parent {
 //        System.out.println(this.CenterX + " " + this.CenterY + " " + this.Radius);
         this.circle = new Circle();
         this.circle.setCenterX(80);
-        this.circle.setFill(Color.LIGHTGREEN);
-        this.circle.setCenterY(650);
+//        this.circle.setFill(Color.LIGHTGREEN);
+        this.circle.setCenterY(652);
         this.circle.setRadius(50);
+        this.circle.setStyle("-fx-fill: #e529f2 ; -fx-stroke: white; -fx-stroke-width: 3;"); // use stroke for border color
 
     }
     public Circle getCircle() {
