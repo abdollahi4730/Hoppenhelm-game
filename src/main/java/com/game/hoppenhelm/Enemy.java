@@ -34,11 +34,11 @@ public class Enemy {
     double nowLocationX = 1100;
 
     public void moverectangle() throws InterruptedException {
-        System.out.println("hello");
+//        System.out.println("hello");
 
         CenterX -=148;
         rectangle.setX(CenterX);
-        System.out.println(CenterX);
+//        System.out.println(CenterX);
     }
 
     public double getCenterX() {
