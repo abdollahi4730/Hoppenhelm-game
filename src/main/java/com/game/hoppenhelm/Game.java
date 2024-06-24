@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;// for score
+import javafx.scene.layout.StackPane;
 
 
 public class Game extends Application {
@@ -65,8 +66,7 @@ public class Game extends Application {
                 contrl++; // tedad space mishmore ta ba temp barabar shod enemy besaze
                 playerScare++;//increase score
 
-                score.setText("Score: "+playerScare);//Show score
-                root.getChildren().add(score);
+
 
                 if(root.getChildren().get(1).getClass().getName() == "javafx.scene.shape.Circle"){
                     System.out.println("yo");
@@ -122,6 +122,10 @@ public class Game extends Application {
                 Task = new MyTimerTask();
                 timer.schedule(Task, 10000);
 
+                score.setText("Score: "+playerScare);//Show score
+                StackPane root2 = new StackPane();
+                root.getChildren().add(score);
+
             }
             if (e.getCode() == KeyCode.V){ // zarbe zadan tu yek khone aqab tar
                 System.out.println(enemy.getCenterX());
@@ -129,6 +133,7 @@ public class Game extends Application {
                     System.out.println(" baba benazam koshtish");
                     root.getChildren().remove(1);
                     enemy.set(0 , 0 , 0 , 0);
+
                 }
             }
         });
