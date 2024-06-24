@@ -13,8 +13,16 @@ import java.util.TimerTask;
 import javafx.scene.control.Alert;// for massage
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;// for score
+
 
 public class Game extends Application {
+
+
+    private  int playerScare = 0;
+    private Label score =  new Label("score :0");
+
+
     protected int hp = 3;
     private int widthScreen, heightScreen;
     static Timer timer= new Timer();
@@ -55,6 +63,11 @@ public class Game extends Application {
 //            timer.schedule(Task ,30000 , 0);
             if(e.getCode() == KeyCode.SPACE){
                 contrl++; // tedad space mishmore ta ba temp barabar shod enemy besaze
+                playerScare++;//increase score
+
+                score.setText("Score: "+playerScare);//Show score
+                root.getChildren().add(score);
+
                 if(root.getChildren().get(1).getClass().getName() == "javafx.scene.shape.Circle"){
                     System.out.println("yo");
                 }
@@ -120,6 +133,7 @@ public class Game extends Application {
             }
         });
 
+        ///
 
         stage.show();
     }
@@ -140,5 +154,6 @@ public class Game extends Application {
             timer.cancel();
         }
     }
+
 
 }
