@@ -5,9 +5,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
-//import
 public class Playground {
     private int widthScreen ;
     private double widthRec;
@@ -16,16 +14,7 @@ public class Playground {
 
     Playground(int widthScreen , int heightScreen , Group root) {
         this.widthRec = heightScreen / 10.0;
-//        Rectangle[] rectangles = new Rectangle[10];
-//        ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>(10);
 
-//        for(int i = 0 ; i < 10 ; i++){
-//            System.out.println(rectangles.get(i));
-
-//            Rectangle rec = rectangles[i];
-
-//            rec.setX(10);
-//            System.out.println(rec.getX());
         for (int i = 0 ; i < this.widthRec ; i++){
             if ( i % 2 == 0){
 
@@ -48,12 +37,9 @@ public class Playground {
                 rectangle.setX(heightScreen - (i * 50));
                 root.getChildren().add(rectangle);
             }
-//            System.out.println(root.getChildren());
 
         }
-//
-//        }
-//        System.out.println("i created");
+
         root.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
                 changeBlocksColor(root);
@@ -75,22 +61,6 @@ public class Playground {
                 }
             }
         }
-    }
-
-public void movePlayground(Group root){
-//        for ( i : root.getChildren()){
-//
-//        }
-
-//        System.out.println(root.getChildren().get(0).getClass().getName() );
-
-     //   for (Node childIndex : root.getChildren() ){
-//            childIndex.toString().charAt()
-
-
-
-//        int[]t = new int[10];
-
     }
 
 }
