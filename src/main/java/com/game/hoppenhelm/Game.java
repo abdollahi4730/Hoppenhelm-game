@@ -22,7 +22,7 @@ import javafx.scene.shape.Circle;
 public class Game extends Application {
 
     private int playScore = 0;
-    private  Label score = new Label();
+    static private  Label scoreLable;
     static private Stage stage;
     static private Scene scene;
     protected int numHearts;
@@ -40,7 +40,7 @@ public class Game extends Application {
     static Label timerLabel;
     static int initialTime = 10; // زمان اولیه به ثانیه
     static int timeLeft; // زمان باقی مانده به ثانیه
-
+    static boolean gameOverBool = false;
     public static void main(String[] args) {
         launch();
 
@@ -49,14 +49,6 @@ public class Game extends Application {
     }
     @Override
     public void start(Stage stage) throws IOException {
-
-         score.setLayoutX(10);
-         score.setLayoutY(50);
-         score.setText("Score: 0" );
-
-      //  score.setStyle("color: white; font-size: 20px ; font-weight: bold;");
-        score.setStyle("-fx-text-fill: white; -fx-font-size: 30px;");
-
 
         this.widthScreen = 720;
         this.heightScreen = 1280;
@@ -81,11 +73,18 @@ public class Game extends Application {
         // اضافه کردن تایمر لیبل به روت
         timerLabel = new Label("Time left: " + initialTime);
         timerLabel.setTextFill(Color.WHITE);
-        timerLabel.setStyle("-fx-font-size: 24px;");
-        timerLabel.setLayoutX(this.widthScreen / 2 - 50);
-        timerLabel.setLayoutY(10);
+        timerLabel.setStyle("-fx-font-size: 35px;");
+        timerLabel.setLayoutX(530);
+        timerLabel.setLayoutY(20);
         root.getChildren().add(timerLabel);
         timeLeft = 10;
+
+        scoreLable = new Label("Score: " + playScore);
+        scoreLable.setLayoutX(10);
+        scoreLable.setLayoutY(50);
+//        scoreLable.setText("Score: 0" );
+        scoreLable.setStyle("-fx-text-fill: white; -fx-font-size: 30px;");
+        root.getChildren().add(scoreLable);
 
         stage.setScene(scene); // set scene on stage
         Playground playground = new Playground(this.widthScreen, this.heightScreen , root);
@@ -181,8 +180,8 @@ public class Game extends Application {
 
                 resetTimer();
 
-                score.setText("Score: " +playScore);//show score
-                root.getChildren().add(score);
+                scoreLable.setText("Score: " +playScore);//show score
+//                root.getChildren().add(scoreLable);
 
             }
             if (e.getCode() == KeyCode.V) { // zarbe zadan tu yek khone aqab tar
@@ -208,8 +207,8 @@ public class Game extends Application {
                         }
                         playScore +=3;
 
-                        score.setText("Score: " +playScore +"\u2066(\u2060•\u2060‿\u2060•\u2060)\u2069");//show score
-                        root.getChildren().add(score);
+                        scoreLable.setText("Score: " +playScore +"\u2066(\u2060•\u2060‿\u2060•\u2060)\u2069");//show score
+//                        root.getChildren().add(scoreLable);
 
                     }
             }
@@ -232,18 +231,25 @@ public class Game extends Application {
     }
 
     static void gameOver(){
-//        this.scene.
-        scene.setFill(Color.RED);
-        Alert alert = new Alert(  AlertType.INFORMATION);
+        if (gameOverBool == false){
+            gameOverBool = true;
+            timer.cancel();
+            System.out.println("Game Over");
+            scene.setFill(Color.RED);
+            Alert alert = new Alert(  AlertType.INFORMATION);
 
-        alert.setHeaderText(null);
-        alert.setContentText("Game Over \u2066(\u2060・\u2060_\u2060・)\u2069");
-        alert.getButtonTypes().setAll(ButtonType.OK);
-        alert.showAndWait().ifPresent(response -> {
-            if(response == ButtonType.OK){
-                stage.close();
-            }
-        });
+            alert.setHeaderText(null);
+            alert.setContentText("Game Over \u2066(\u2060・\u2060_\u2060・)\u2069");
+            alert.getButtonTypes().setAll(ButtonType.OK);
+            alert.showAndWait().ifPresent(response -> {
+                if(response == ButtonType.OK){
+                    System.out.println("response: "+response);
+                    stage.close();
+                }
+            });
+
+        }
+
 
 //        System.out.println("yoooooooooo test");
     }
@@ -254,9 +260,13 @@ public class Game extends Application {
                 if (timeLeft > 0) {
                     timeLeft--;
                     timerLabel.setText("Time left: " + timeLeft);
-                } else {
+                } else if (timeLeft == 0) {
+                    timeLeft = -1;
                     gameOver();
                     timer.cancel();
+
+                    System.out.println("timeLeft: "+timeLeft);
+
                 }
 
             });
