@@ -36,6 +36,11 @@ public class Game extends Application {
 
     Enemy enemy;
     Player player;
+
+    static Label timerLabel;
+    static int initialTime = 10; // زمان اولیه به ثانیه
+    static int timeLeft; // زمان باقی مانده به ثانیه
+
     public static void main(String[] args) {
         launch();
 
@@ -73,10 +78,19 @@ public class Game extends Application {
         scene.setFill(Color.BLACK);
         stage.setTitle("Hoppenhelm game");
 
+        // اضافه کردن تایمر لیبل به روت
+        timerLabel = new Label("Time left: " + initialTime);
+        timerLabel.setTextFill(Color.WHITE);
+        timerLabel.setStyle("-fx-font-size: 24px;");
+        timerLabel.setLayoutX(this.widthScreen / 2 - 50);
+        timerLabel.setLayoutY(10);
+        root.getChildren().add(timerLabel);
+        timeLeft = 10;
+
         stage.setScene(scene); // set scene on stage
         Playground playground = new Playground(this.widthScreen, this.heightScreen , root);
 
-
+        resetTimer();
 
         Task = new MyTimerTask();
         timer.schedule(Task, 10000);
@@ -164,11 +178,8 @@ public class Game extends Application {
                 } catch (Exception InterruptedException){
                     System.out.println((InterruptedException.getMessage()));
                 }
-                if (Task != null) {
-                    Task.cancel();
-                }
-                Task = new MyTimerTask();
-                timer.schedule(Task, 10000);
+
+                resetTimer();
 
                 score.setText("Score: " +playScore);//show score
                 root.getChildren().add(score);
@@ -207,6 +218,19 @@ public class Game extends Application {
 
         stage.show();
     }
+
+    private void resetTimer() {
+
+        if (timer != null) {
+            timer.cancel();
+        }
+        timer = new Timer();
+        timeLeft = initialTime;
+        timerLabel.setText("Time left: " + timeLeft);
+        Task = new MyTimerTask();
+        timer.scheduleAtFixedRate(Task, 0, 1000);
+    }
+
     static void gameOver(){
 //        this.scene.
         scene.setFill(Color.RED);
@@ -225,17 +249,17 @@ public class Game extends Application {
     }
     static class MyTimerTask extends TimerTask {
         @Override
-
         public void run() {
-            try {
-                Platform.runLater(() -> {
+            Platform.runLater( () -> {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    timerLabel.setText("Time left: " + timeLeft);
+                } else {
                     gameOver();
-                });
-                timer.cancel();
-            }catch (Exception e){
-                System.out.println(e);
-                e.printStackTrace();
-            }
+                    timer.cancel();
+                }
+
+            });
         }
     }
 
