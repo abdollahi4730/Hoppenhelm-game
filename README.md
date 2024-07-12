@@ -7,7 +7,7 @@ first do :
 git clone https://github.com/abdollahi4730/Hoppenhelm-game.git 
 ```
 
-then, install [Install IntelliJ IDEA](https://www.jetbrains.com/help/idea/installation-guide.html) .
+then, [install IntelliJ IDEA](https://www.jetbrains.com/help/idea/installation-guide.html) .
 
 now, open this project with `Intllj idea`.
 then run `Game.java`.
