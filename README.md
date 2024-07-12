@@ -14,5 +14,6 @@ then run `Game.java`.
 
 ## Options
 press **space** key for move.
+
 press **V** key for kill enemy.
 
