@@ -1,5 +1,4 @@
-# Hoppenhelm game
-#### Hoppenhelm game written with JavaFX.
+# Hoppenhelm game written with JavaFX.
 
 
 first do :
@@ -10,6 +9,9 @@ git clone https://github.com/abdollahi4730/Hoppenhelm-game.git
 then, [install IntelliJ IDEA](https://www.jetbrains.com/help/idea/installation-guide.html) .
 
 now, open this project with `Intllj idea`.
+
+then `install javaFx library` and **add to this project**
+
 then run `Game.java`.
 
 ## Options
