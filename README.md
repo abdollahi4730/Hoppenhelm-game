@@ -22,5 +22,8 @@ press **V** key for kill enemy.
 ## Pictures
 ![Hoppenhelm game pic](https://github.com/abdollahi4730/Hoppenhelm-game/blob/main/picture/hoppenhelm_pic.jpg)
 
+## Notes
+* If you don't move, you will be killed after ten seconds
+* If the enemy was in front of you and you didn't kill her, one of your lives will be lost after three seconds.
 
 enjoy your life !
